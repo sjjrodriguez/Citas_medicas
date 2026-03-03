@@ -7,10 +7,10 @@ import jakarta.persistence.*;
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremental en MySQL
     private Long idUsuario;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true) // No puede ser nulo ni repetido
     private String username;
 
     @Column(nullable = false)
@@ -29,8 +29,11 @@ public class Usuario {
     @Column(nullable = false)
     private RolUsuario rol;
 
+    // Enum que define los 3 tipos de usuario posibles en el sistema
     public enum RolUsuario {
-        PACIENTE, DOCTOR, ADMIN
+        PACIENTE, // Puede consultar citas, exámenes, programar y cancelar
+        DOCTOR,   // Tiene citas asignadas y puede ver exámenes
+        ADMIN     // Acceso total al sistema
     }
 
     public Usuario() {}
