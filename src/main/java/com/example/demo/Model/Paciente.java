@@ -10,7 +10,6 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPaciente;
 
-    // RNF-02: El documento debe ser único, no se permiten duplicados
     @Column(nullable = false, unique = true)
     private String documento;
 
@@ -23,8 +22,6 @@ public class Paciente {
     @Column(nullable = false)
     private String email;
 
-    // Relación 1 a 1: cada paciente tiene exactamente un usuario para login
-    // Si se elimina el usuario, se elimina el paciente también
     @OneToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
