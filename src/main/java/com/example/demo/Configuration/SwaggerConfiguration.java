@@ -1,31 +1,23 @@
 package com.example.demo.Configuration;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.info.Contact;
-import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.info.License;
-import org.springdoc.core.models.GroupedOpenApi;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-    @OpenAPIDefinition(
-        info = @Info(
-                title = "Citas Médicas API",
-                version = "1.0.0",
-                description = "Sistema de gestión de citas médicas",
-                contact = @Contact(name = "Tu Nombre", email = "tu@email.com"),
-                license = @License(name = "MIT", url = "https://opensource.org/licenses/MIT")
-        )
-    )
-
-    @Configuration
-    public class SwaggerConfiguration {
+@Configuration
+public class SwaggerConfiguration {
 
     @Bean
-    public GroupedOpenApi publicApi() {
-        return GroupedOpenApi.builder()
-                .group("citas-medicas")
-                .pathsToMatch("/api/**")
-                .build();
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("API Citas Medicas")
+                        .version("1.0")
+                        .description("API para gestion de citas medicas")
+                        .contact(new Contact()
+                                .name("Desarrollador")
+                                .email("citasmedicas@demo.com")));
     }
 }
